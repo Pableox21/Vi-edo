@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viñedo del Amanecer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(imagenes/photo-1510812431401-41d2bd2722f3.avif);
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+        }
+        
+        .wine-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .wine-detail {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        
+        .wine-detail.active {
+            max-height: 1000px;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+    <nav class="bg-gray-900 text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-wine-glass-alt text-2xl text-red-600"></i>
+                <a href="#" class="text-2xl font-bold">Viñedo del <span class="text-red-500"> Amanecer</span></a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="hover:text-red-400">Inicio</a>
+                <a href="#about" class="hover:text-red-400">Sobre nosotros</a>
+                <a href="#catalog" class="hover:text-red-400">Catalogo</a>
+                <a href="#contact" class="hover:text-red-400">Contactos</a>
+                <a href="#" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg">Ordenar ahora</a>
+            </div>
+            <button class="md:hidden">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden bg-gray-800 text-white md:hidden">
+        <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+            <a href="#" class="hover:text-red-400">Inicio</a>
+            <a href="#about" class="hover:text-red-400">Sobre nosotros</a>
+            <a href="#catalog" class="hover:text-red-400">Catalogo</a>
+            <a href="#contact" class="hover:text-red-400">Contactos</a>
+            <a href="#" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-center">Ordenar ahora</a>
+        </div>
+    </div>
+
+    <section class="hero flex items-center justify-center text-white">
+        <div class="text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Vinos exepcionales<br>Para gustos exigentes</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Descubra nuestra cuidada selección de vinos premium del mejor viñedo del pais.</p>
+            <a href="#catalog" class="px-8 py-3 bg-red-600 hover:bg-red-700 rounded-lg text-lg font-semibold">Explorar ahora</a>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nuestra historia</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="imagenes/photo-1414235077428-338989a2e8c0.avif" alt="Wine cellar" class="rounded-lg shadow-xl">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Tres generaciones de experiencia en vinos</h3>
+                    <p class="text-gray-600 mb-4">Fundado en 1952, Viñedo del Amanecer lleva más de 70 años ofreciendo vinos excepcionales a los conocedores. Lo que comenzó como un pequeño viñedo familiar en el Valle de Vinto se ha convertido en una selección internacional de los mejores vinos.</p>
+                    <p class="text-gray-600 mb-6">Nuestro equipo de sumilleres trabaja cuidadosamente las cosechas más excepcionales para nuestros clientes. Creemos que el vino es más que una bebida: es una experiencia para compartir y disfrutar.</p>
+                    <a href="#" class="px-6 py-2 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition duration-300">Leer mas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalog" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nuestros Productos</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto mb-8"></div>
+                <div class="flex justify-center space-x-4">
+                    <button class="filter-btn px-4 py-2 rounded-full bg-red-600 text-white" data-filter="all">Todos los vinos</button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100" data-filter="red">Vinos Rojos</button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100" data-filter="white">Vinos Blancos</button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100" data-filter="sparkling">Espumosos</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!--Vino1-->
+                <div class="wine-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 wine-item red" data-type="red">
+                    <div class="relative">
+                        <img src="imagenes/red1.jpg" alt="Cabernet Sauvignon" class="w-full h-64 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">ROJO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Estate Reserve Cabernet Sauvignon</h3>
+                        <p class="text-gray-600 text-sm mb-4">2018</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-red-600 font-bold text-xl">Bs89.99</span>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <button class="view-details-btn w-full py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-800 font-medium transition duration-300">
+                            Detalles <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="wine-detail mt-4">
+                            <p class="text-gray-600 text-sm mb-2">Un Cabernet Sauvignon audaz y complejo con sabores concentrados de grosella negra, cereza oscura y toques de vainilla y tabaco..</p>
+                            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                <span>Alcohol: 14.5%</span>
+                                <span>Volumen: 750ml</span>
+                            </div>
+                            <button class="w-full mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-300">
+                                Añadir al Carrito <i class="fas fa-shopping-cart ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Vino2 -->
+                <div class="wine-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 wine-item white" data-type="white">
+                    <div class="relative">
+                        <img src="imagenes/Blanco1.jpg" alt="Chardonnay" class="w-full h-64 object-cover">
+                        <span class="absolute top-2 right-2 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">BLANCO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Reserve Chardonnay</h3>
+                        <p class="text-gray-600 text-sm mb-4">2019</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-red-600 font-bold text-xl">Bs65.99</span>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="view-details-btn w-full py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-800 font-medium transition duration-300">
+                            Detalles <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="wine-detail mt-4">
+                            <p class="text-gray-600 text-sm mb-2">Un Chardonnay elegante con brillantes notas cítricas, un sutil toque a roble y una textura cremosa. Perfecto para acompañar platos de mariscos o aves.</p>
+                            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                <span>Alcohol: 13.5%</span>
+                                <span>Volumen: 750ml</span>
+                            </div>
+                            <button class="w-full mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-300">
+                                Añadir al Carrito <i class="fas fa-shopping-cart ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vino3 -->
+                <div class="wine-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 wine-item sparkling" data-type="sparkling">
+                    <div class="relative">
+                        <img src="imagenes/esp.jpg" alt="Champagne" class="w-full h-64 object-cover">
+                        <span class="absolute top-2 right-2 bg-blue-100 text-gray-800 px-3 py-1 rounded-full text-xs font-bold">ESPUMOSO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Vintage Champagne Brut</h3>
+                        <p class="text-gray-600 text-sm mb-4">2016</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-red-600 font-bold text-xl">Bs129.99</span>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="view-details-btn w-full py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-800 font-medium transition duration-300">
+                            Detalles<i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="wine-detail mt-4">
+                            <p class="text-gray-600 text-sm mb-2">Un exquisito champán elaborado con el método tradicional con delicadas burbujas, notas de manzana verde, brioche y un final fresco y seco.</p>
+                            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                <span>Alcohol: 12.5%</span>
+                                <span>Volumen: 750ml</span>
+                            </div>
+                            <button class="w-full mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-300">
+                                Añadir al Carrito <i class="fas fa-shopping-cart ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vino 4 -->
+                <div class="wine-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 wine-item red" data-type="red">
+                    <div class="relative">
+                        <img src="imagenes/red2.jpg" alt="Pinot Noir" class="w-full h-64 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">ROJO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Single Vineyard Pinot Noir</h3>
+                        <p class="text-gray-600 text-sm mb-4">2019</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-red-600 font-bold text-xl">Bs74.99</span>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="view-details-btn w-full py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-800 font-medium transition duration-300">
+                            Detalles <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="wine-detail mt-4">
+                            <p class="text-gray-600 text-sm mb-2">Un Pinot Noir refinado con aromas a cereza roja, tierra y especias. Sus taninos sedosos y su acidez equilibrada lo hacen ideal para acompañar comidas.</p>
+                            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                <span>Alcohol: 13.8%</span>
+                                <span>Volumen: 750ml</span>
+                            </div>
+                            <button class="w-full mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-300">
+                                Añadir al Carrito <i class="fas fa-shopping-cart ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Vino5 -->
+                <div class="wine-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 wine-item white" data-type="white">
+                    <div class="relative">
+                        <img src="imagenes/Blanco2.jpg" alt="Sauvignon Blanc" class="w-full h-64 object-cover">
+                        <span class="absolute top-2 right-2 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">BLANCO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Sauvignon Blanc</h3>
+                        <p class="text-gray-600 text-sm mb-4">2020</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-red-600 font-bold text-xl">Bs49.99</span>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="view-details-btn w-full py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-800 font-medium transition duration-300">
+                            Detalles <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="wine-detail mt-4">
+                            <p class="text-gray-600 text-sm mb-2">Vibrante y fresco, con notas clásicas de maracuyá, ralladura de lima y grosella. Su acidez fresca lo convierte en una excelente bebida para el verano.</p>
+                            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                <span>Alcohol: 12.5%</span>
+                                <span>Volumen: 750ml</span>
+                            </div>
+                            <button class="w-full mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-300">
+                                Añadir al Carrito <i class="fas fa-shopping-cart ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Vino 6 -->
+                <div class="wine-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 wine-item red" data-type="red">
+                    <div class="relative">
+                        <img src="imagenes/red3.jpg" alt="Malbec" class="w-full h-64 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">ROJO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Reserva Malbec</h3>
+                        <p class="text-gray-600 text-sm mb-4">2017</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-red-600 font-bold text-xl">Bs59.99</span>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <button class="view-details-btn w-full py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-800 font-medium transition duration-300">
+                            Detalles <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div class="wine-detail mt-4">
+                            <p class="text-gray-600 text-sm mb-2">Un Malbec robusto con sabores concentrados de frutos negros, toques de chocolate y taninos aterciopelados. Crianza de 12 meses en barrica de roble francés.</p>
+                            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                                <span>Alcohol: 14.9%</span>
+                                <span>Volumen: 750ml</span>
+                            </div>
+                            <button class="w-full mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition duration-300">
+                                Añadir al Carrito <i class="fas fa-shopping-cart ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Subscribete al club de catadores</h2>
+                <p class="text-gray-300 mb-8">Suscríbete a nuestro boletín para recibir ofertas exclusivas, novedades y consejos sobre vinos de nuestros expertos sommeliers.</p>
+                <form class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <input type="email" placeholder="Direccion de Email" class="px-4 py-3 rounded-lg text-gray-800 w-full sm:w-auto sm:flex-grow max-w-md">
+                    <button type="submit" class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-semibold">Subscribirse</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contactos Seccion -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Contactenos</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nombre</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Mensaje</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold">Enviar Mensaje</button>
+                    </form>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-gray-100 p-8 rounded-lg h-full">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Visite Nuestra Sala de Degustacion</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-red-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Direccion</h4>
+                                    <p class="text-gray-600">123 Av. America</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-red-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Celular</h4>
+                                    <p class="text-gray-600">71496933</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-red-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Email</h4>
+                                    <p class="text-gray-600">info@viñedoAmanecer.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-red-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">Horarios</h4>
+                                    <p class="text-gray-600">Lunes-Viernes: 10am-6pm</p>
+                                    <p class="text-gray-600">Sabado: 10am-8pm</p>
+                                    <p class="text-gray-600">Domingo: 12pm-5pm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-wine-glass-alt text-xl text-red-600"></i>
+                        <span class="text-xl font-bold">Viñedo del <span class="text-red-500">Amanecer</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Exceptionales vinos del valle de Vinto.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tienda</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Vinos Rojos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Vinos Blancos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Vinos Espumosos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Paquetes de Vino</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tarjetas de Regalo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Sobre nosotros</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Nuestra historia</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sucursales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Nuestro Equipo</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Sustentabilidad</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Servicio al Cliente</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contactenos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Politica de Envios</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Reembolsos & Cambios</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terminos de Servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Viñedo del Amanecer. Derechos reservados Leo-Producciones.</p>
+                
+            </div>
+            <div class="text-xs text-gray-500 text-center mt-4">
+                <p>Todos los vinos vendidos en este sitio se venden a través de minoristas autorizados y requieren la firma de un adulto al momento de la entrega.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- funciones -->
+    <script>
+        document.querySelector('nav button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        const detailButtons = document.querySelectorAll('.view-details-btn');
+        detailButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const details = this.nextElementSibling;
+                details.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (details.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const wineItems = document.querySelectorAll('.wine-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => {
+                    if(btn === this) {
+                        btn.classList.add('bg-red-600', 'text-white');
+                        btn.classList.remove('border', 'border-gray-300', 'hover:bg-gray-100');
+                    } else {
+                        btn.classList.remove('bg-red-600', 'text-white');
+                        btn.classList.add('border', 'border-gray-300', 'hover:bg-gray-100');
+                    }
+                });
+                
+                const filter = this.dataset.filter;
+                
+                wineItems.forEach(item => {
+                    if(filter === 'all' || item.dataset.type === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
